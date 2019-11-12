@@ -134,7 +134,7 @@ function NodeLinked(value, next, prev) {
 }
 
 
-LinkedList.prototype.InsertHead = fucntion(value){
+LinkedList.prototype.InsertHead = function(value){
     const newNodo = new NodeLinked(value, this.head, null);
     if (this.head) this.head.prev = newNodo;
     else this.tail = newNodo;
@@ -157,3 +157,89 @@ LinkedList.prototype.search = function (buscar) {
     }
     return null;
 }
+
+function buscarPorNombre(nombre){
+	var resultado = new Array();
+	for (i=0;i<listaArboles.length;i++){
+		if (listaArboles[i].nombre==nombre){
+			resultado.push(listaArboles[i]);
+			break;
+		}
+    }
+    for (i=0;i<listaAromaticas.length;i++){
+		if (listaAromaticas[i].nombre==nombre){
+			resultado.push(listaAromaticas[i]);
+			break;
+		}
+    }
+    for (i=0;i<listaMedicinales.length;i++){
+		if (listaMedicinales[i].nombre==nombre){
+			resultado.push(listaMedicinales[i]);
+			break;
+		}
+    }
+    for (i=0;i<listaOrnamentales.length;i++){
+		if (listaOrnamentales[i].nombre==nombre){
+			resultado.push(listaOrnamentales[i]);
+			break;
+		}
+    }
+	return resultado;
+};
+
+function buscarPorTemporada(temporada){
+	var resultado = new Array();
+	for (i=0;i<listaArboles.length;i++){
+		if (listaArboles[i].temporada==temporada){
+			resultado.push(listaArboles[i]);
+			break;
+		}
+    }
+    return resultado;
+};
+
+function buscarPorPrecio(precio){
+	var resultado = new Array();
+	for (i=0;i<listaArboles.length;i++){
+		if (listaArboles[i].precioVenta==precio){
+			resultado.push(listaArboles[i]);
+			break;
+		}
+    }
+    for (i=0;i<listaAromaticas.length;i++){
+		if (listaAromaticas[i].precioVenta==precio){
+			resultado.push(listaAromaticas[i]);
+			break;
+		}
+    }
+    for (i=0;i<listaMedicinales.length;i++){
+		if (listaMedicinales[i].precioVenta==precio){
+			resultado.push(listaMedicinales[i]);
+			break;
+		}
+    }
+    for (i=0;i<listaOrnamentales.length;i++){
+		if (listaOrnamentales[i].precioVenta==precio){
+			resultado.push(listaOrnamentales[i]);
+			break;
+		}
+    }
+	return resultado;
+};
+
+function buscarPorPropiedades(propiedades){
+	var resultado = new Array();
+    for (i=0;i<listaAromaticas.length;i++){
+		if (listaAromaticas[i].propiedadesAromaticas==propiedades){
+			resultado.push(listaAromaticas[i]);
+			break;
+		}
+    }
+    for (i=0;i<listaMedicinales.length;i++){
+		if (listaMedicinales[i].propiedadesMedicinales==propiedades){
+			resultado.push(listaMedicinales[i]);
+			break;
+		}
+    }
+    return resultado;
+};
