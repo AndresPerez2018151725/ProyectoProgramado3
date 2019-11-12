@@ -10,5 +10,39 @@
 </head>
 <body>
 
+  
+  
+<div id="myHTMLWrapper">
+<tr>
+        <th scope="row">ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Type</th>
+        <th>Hiring Date</th>
+        <th>Job Area</th>
+        <th>Email</th>
+        <th></th>
+        <th></th>
+</tr>
+</div>
+<script>
+  var wrapper = document.getElementById("myHTMLWrapper");
+  var myHTML = '<span class="test">Testing out my script!</span>';
+  wrapper.innerHTML = myHTML
+</script>
 
-    
+
+  
+    {{#each listaMedicinales}}
+
+  <tr>
+    <th>{{id}}</th>
+    <td>{{firstName}}</td>
+    <td>{{lastName}}</td>
+    <td>{{type}}</td>
+    <td>{{hiringDate}}</td>
+    <td>{{jobArea}}</td>
+    <td>{{email}}</td>
+    <td>    
+
+{{/each}}

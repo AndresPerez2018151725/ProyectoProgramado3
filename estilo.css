@@ -1,0 +1,145 @@
+body{
+    
+    background:lavender;
+    color:black;
+    text-align: center;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    }
+
+.solicitarCuenta{
+    background: rgba(0,0,0,.3);
+    position: fixed;
+    top:0;
+    bottom:0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    visibility: hidden;
+}
+
+.solicitarCuenta.active{
+    visibility: visible;
+}
+
+.solicitarCuenta2 {
+    background: white;
+    box-shadow:0px 0px 0px 0px rgba(0,0,0,.3);
+    border-radius: 3px;
+    padding: 20px;
+    text-align: center;
+    width:800px;
+}
+
+.btnCerrarVentanaSolicitar{
+    font-size:16px;
+    line-height: 16px;
+    display: block;
+    text-align: right;
+    color: #BBBBBB;
+    transition: 3.s ease all;
+}
+
+.btnCerrarVentanaSolicitar:hover{
+    color: #000;
+}
+
+.solicitarCuenta2 h3{
+    font-size: 36px;
+    font-weight: 600;
+    margin-bottom:10px;
+}
+.solicitarCuenta2 h4{
+    font-size: 26px;
+    font-weight: 300;
+    margin-bottom: 40px;
+}
+
+.cerrarCuenta{
+    background: rgba(0,0,0,.3);
+    position: fixed;
+    top:0;
+    bottom:0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    visibility: hidden;
+}
+
+.cerrarCuenta.active{
+    visibility: visible;
+}
+
+.solicitarCerrarCuenta2{
+    background: white;
+    box-shadow:0px 0px 0px 0px rgba(0,0,0,.3);
+    border-radius: 3px;
+    padding: 20px;
+    text-align: center;
+    width:800px;
+}
+
+.btnCerrarVentanaSolicitar2{
+    font-size:16px;
+    line-height: 16px;
+    display: block;
+    text-align: right;
+    color: #BBBBBB;
+    transition: 3.s ease all;
+}
+
+.btnCerrarVentanaSolicitar2:hover{
+    color: #000;
+}
+.solicitarCerrarCuenta2 h3{
+    font-size: 36px;
+    font-weight: 600;
+    margin-bottom:10px;
+}
+.solicitarCerrarCuenta2 h4{
+    font-size: 26px;
+    font-weight: 300;
+    margin-bottom: 40px;
+}
+
+.contenedorCierreCaja{
+    background: rgba(0,0,0,.3);
+    position: fixed;
+    top:0;
+    bottom:0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    visibility: hidden;
+}
+
+.contenedorCierreCaja2 {
+    background: white;
+    box-shadow:0px 0px 0px 0px rgba(0,0,0,.3);
+    border-radius: 3px;
+    padding: 20px;
+    text-align: center;
+    width:800px;
+}
+
+.contenedorCierreCaja.active{
+    visibility: visible;
+}
+
+.btnCerrarVentanaCierreCaja{
+    font-size:16px;
+    line-height: 16px;
+    display: block;
+    text-align: right;
+    color: #BBBBBB;
+    transition: 3.s ease all;
+}
+
+.btnCerrarVentanaCierreCaja:hover{
+    color: #000;
+}
