@@ -243,3 +243,4 @@ function buscarPorPropiedades(propiedades){
     }
     return resultado;
 };
+
