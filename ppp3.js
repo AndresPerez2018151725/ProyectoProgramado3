@@ -69,8 +69,6 @@ function registrarPlantaAromatica(codigo, nombre, alturaMax, precioVenta,imagen,
 };
 
 
-
-
 function PlantaMedicinal(codigo, nombre, alturaMax, precioVenta,imagen, propiedadesMedicinales) {
     Planta.call(this,codigo);
     Planta.call(this,nombre);
