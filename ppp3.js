@@ -10,42 +10,93 @@ var imagenOrnamental = getElementById("Insertar nombre de la imagen aca");
 // NO SE SI USAMOS ARRAYS O CON LINKED LISTS, COMO QUIERAN 
 
 //OBJETOS
-
-
-function PlantaOrnamental(nombre, codigo, altura, precio,imagen) {
-    this.nombre = nombre;
-    this.codigo = codigo;
-    this.altura = altura;
-    this.precio = precio;
-    this.imagen = imagenOrnamental;
-}
-
-function PlantaAromatica(nombre, codigo, altura, precio, propiedades) {
-    this.nombre = nombre;
-    this.codigo = codigo;
-    this.altura = altura;
-    this.precio = precio;
-    this.propiedades = propiedadesAromaticas;
+function Planta(codigo, nombre, alturaMax, precioVenta, imagen){
+    this.codigo=codigo;
+    this.nombre=nombre;
+    this.alturaMax=alturaMax;
+    this.precioVenta=precioVenta;
+    this.imagen=imagen;
 }
 
 
-
-function PlantaMedicinal(nombre, codigo, altura, precio, propiedades) {
-    this.nombre = nombre;
-    this.codigo = codigo;
-    this.altura = altura;
-    this.precio = precio;
-    this.propiedades = propiedadesAromaticas;
-
+function PlantaOrnamental(codigo, nombre, alturaMax, precioVenta,imagen){
+    Planta.call(this,codigo);
+    Planta.call(this,nombre);
+    Planta.call(this,alturaMax);
+    Planta.call(this,precioVenta);
+    Planta.call(this,imagen);
 }
 
-function ArbolesFrutales(nombre, codigo, altura, precio, temporada) {
-    this.nombre = nombre;
-    this.codigo - codigo;
-    this.altura = altura;
-    this.precio = precio;
-    this.temporada = temporadaArboles;
+PlantaOrnamental.prototype = Object.create(Planta.prototype,{
+	constructor:{
+		configurable: true,
+		enumerable: true,
+		value: PlantaOrnamental,
+		writable: true
+	}
+});
+
+
+function PlantaAromatica(codigo, nombre, alturaMax, precioVenta,imagen, propiedadesAromaticas) {
+    Planta.call(this,codigo);
+    Planta.call(this,nombre);
+    Planta.call(this,alturaMax);
+    Planta.call(this,precioVenta);
+    Planta.call(this,imagen);
+    this.propiedadesAromaticas = propiedadesAromaticas;
 }
+
+PlantaAromatica.prototype = Object.create(Planta.prototype,{
+	constructor:{
+		configurable: true,
+		enumerable: true,
+		value: PlantaAromatica,
+		writable: true
+	}
+});
+
+
+
+function PlantaMedicinal(codigo, nombre, alturaMax, precioVenta,imagen, propiedadesMedicinales) {
+    Planta.call(this,codigo);
+    Planta.call(this,nombre);
+    Planta.call(this,alturaMax);
+    Planta.call(this,precioVenta);
+    Planta.call(this,imagen);
+    this.propiedadesMedicinales = propiedadesMedicinales;
+}
+
+PlantaMedicinal.prototype = Object.create(Planta.prototype,{
+	constructor:{
+		configurable: true,
+		enumerable: true,
+		value: PlantaMedicinal,
+		writable: true
+	}
+});
+
+
+function ArbolFrutal(codigo, nombre, alturaMax, precioVenta,imagen, temporada) {
+    Planta.call(this,codigo);
+    Planta.call(this,nombre);
+    Planta.call(this,alturaMax);
+    Planta.call(this,precioVenta);
+    Planta.call(this,imagen);
+    this.temporada = temporada;
+}
+
+ArbolFrutal.prototype = Object.create(Planta.prototype,{
+	constructor:{
+		configurable: true,
+		enumerable: true,
+		value: ArbolFrutal,
+		writable: true
+	}
+});
+
+
+
+
 
 
 //LINKED LIST, SE PUEDE USAR O NO 
