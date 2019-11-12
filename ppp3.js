@@ -37,6 +37,12 @@ PlantaOrnamental.prototype = Object.create(Planta.prototype,{
 });
 
 
+function registrarPlantaOrnamental(codigo, nombre, alturaMax, precioVenta,imagen){
+	var plantaOrnamental= new PlantaOrnamental(codigo, nombre, alturaMax, precioVenta,imagen);
+	listaOrnamentales.push(plantaOrnamental);
+};
+
+
 function PlantaAromatica(codigo, nombre, alturaMax, precioVenta,imagen, propiedadesAromaticas) {
     Planta.call(this,codigo);
     Planta.call(this,nombre);
@@ -54,6 +60,14 @@ PlantaAromatica.prototype = Object.create(Planta.prototype,{
 		writable: true
 	}
 });
+
+///FALTA AGARRAR LOS DATOS DEL HTML Y TAMBIÉN AGARRAR EN UN ARRAY LAS PROPIEDADES AROMÁTICAS
+
+function registrarPlantaAromatica(codigo, nombre, alturaMax, precioVenta,imagen, propiedadesAromaticas){
+	var plantaAromatica= new PlantaAromatica(codigo, nombre, alturaMax, precioVenta,imagen,propiedadesAromaticas);
+	listaAromaticas.push(plantaAromatica);
+};
+
 
 
 
@@ -75,6 +89,12 @@ PlantaMedicinal.prototype = Object.create(Planta.prototype,{
 	}
 });
 
+///FALTA AGARRAR LOS DATOS DEL HTML Y TAMBIÉN AGARRAR EN UN ARRAY LAS PROPIEDADES MEDICINALES
+function registrarPlantaMedicinal(codigo, nombre, alturaMax, precioVenta,imagen, propiedadesMedicinales){
+	var PlantaMedicinal= new PlantaMedicinal(codigo, nombre, alturaMax, precioVenta,imagen,propiedadesMedicinales);
+	listaMedicinales.push(PlantaMedicinal);
+};
+
 
 function ArbolFrutal(codigo, nombre, alturaMax, precioVenta,imagen, temporada) {
     Planta.call(this,codigo);
@@ -94,8 +114,11 @@ ArbolFrutal.prototype = Object.create(Planta.prototype,{
 	}
 });
 
-
-
+///FALTA AGARRAR LOS DATOS DEL HTML Y TAMBIÉN AGARRAR EN UN ARRAY LAS TEMPORADAS
+function registrarArbolFrutal(codigo, nombre, alturaMax, precioVenta,imagen, temporada){
+	var arbolFrutal= new ArbolFrutal(codigo, nombre, alturaMax, precioVenta,imagen, temporada);
+	listaArboles.push(arbolFrutal);
+};
 
 
 
