@@ -319,4 +319,4 @@ console.log(listaArboles[1]);
 console.log(buscarPorNombre("Limonero"));*/
 console.log(verPlantas());
 console.log(verPlantasImagen());
-console.log(verPlantasNombres()[0]);
+console.log(verPlantasNombres()[1]);

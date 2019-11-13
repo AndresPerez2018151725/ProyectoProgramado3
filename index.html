@@ -1,111 +1,52 @@
-<!-- 
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<body>
 
-<h1>Plantas y Arboles</h1>
-<p>Todas las plantas</p>
-
-
-
-  -->
-
-
-  <!doctype html>
-  <html>
-  <head>
+<head>
   <meta charset="utf-8">
   <title>TablaDolar</title>
   <script src="ppp3.js"></script>
-  </head>
- 
-  <body>
-      <h1>Plantas y Arboles</h1>
+</head>
 
-      <select>
-          <option value="Nombre">Nombre</option>
-          <option value="Temporada">Temporada</option>
-          <option value="Precio">Precio</option>
-          <option value="Propiedades">Propiedades</option>
-        </select>
+<body>
+  <h1>Plantas y Arboles</h1>
+
+  <select>
+    <option value="Nombre">Nombre</option>
+    <option value="Temporada">Temporada</option>
+    <option value="Precio">Precio</option>
+    <option value="Propiedades">Propiedades</option>
+  </select>
 
   <table width="200" border="1">
-      <tbody id="contenedor">
-      </tbody>
+    <tbody id="contenedor">
+    </tbody>
   </table>
-  
+
   <script>
 
-  var contador = 0;
-  var monto = 0;
-  var dolar = 17.10; // Decimales
-  var a = "";
-  var vueltas = 0;
-  
-  a += "<tr><td>Codigo</td><td>Nombre</td><td>Altura</td><td>Precio</td><td>Propiedades</td><td>Temporada</td></tr>"; // Cabecera
-  
-  while(vueltas < 10){
-      a += "<tr><td>" + 0 + "</td><td>" + verPlantasNombres()[contador] + "</td></tr>" + "</td><td>" + 0 + "</td><td>" + 0
-          + "</td><td>" + 0 + "</td><td>" + 0;
-      contador++      
+    var contador = 0;
+    var monto = 0;
+    var dolar = 17.10; // Decimales
+    var a = "";
+    var vueltas = 0;
+
+    a += "<tr><td>Codigo</td><td>Nombre</td><td>Altura</td><td>Precio</td><td>Propiedades</td><td>Temporada</td></tr>"; // Cabecera
+
+    while (vueltas < 10) {
+      a += "<tr><td>" + 0 + "</td><td>" + verPlantasNombres()[contador]  + "</td><td>" + 1 + "</td><td>" + 1
+        + "</td><td>" + 0 + "</td><td>" + 0 + "</td></tr>";
+      contador++
       vueltas++;
       dolar++; // Incrementador
       monto++;
-  }
-  
-  document.getElementById("contenedor").innerHTML = a;
-  
+    }
+
+    document.getElementById("contenedor").innerHTML = a;
+
   </script>
-  
-  </body>
-
-
-<!-- 
-<table class="egt">
-    <tr>
-        <th scope="row">Destinations</th>
-        <th>Visitors</th>
-        <th>Visitorsz</th>
-        </tr>
-        <div id="myHTMLWrapper">
-          </div>
-          <script>
-            var wrapper = document.getElementById("myHTMLWrapper");
-            var myHTML = '';
-            for (var i = 0; i < 10; i++) {
-
-            myHTML += '<span class="test">Testing out my script! loop #' + (i + 1) + '</span><br/><br/>';
-    <tr>
-      <td>myHTML</td>
-      <td>myHTML</td>
-      <td>myHTML</td>
-    </tr>
-  }
-  wrapper.innerHTML = myHTML
-  </script>
-  
-  </table>     
--->
-
-
-<!--  
-<tr>
-    <th scope="row">Destinations</th>
-    <th>Visitors</th>
-    </tr>
-
-        {{#each foundResults}}
-
-    <tr>
-        <td>{{destinationName}}</td>
-        <td>{{visitors}}</td>
-    </tr>
-    {{/each}}
--->
-
 
 </body>
-</html>
 
-  
-  
+</body>
+
+</html>
