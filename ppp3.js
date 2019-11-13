@@ -119,7 +119,7 @@ function registrarArbolFrutal(codigo, nombre, alturaMax, precioVenta, imagen, te
 };
 
 
-
+/*
 //LINKED LIST, SE PUEDE USAR O NO 
 function LinkedList() {
 	this.head = null;
@@ -155,7 +155,7 @@ LinkedList.prototype.search = function (buscar) {
 	}
 	return null;
 }
-
+*/
 function buscarPorNombre(nombre) {
 	var resultado = new Array();
 	for (i = 0; i < listaArboles.length; i++) {
@@ -308,3 +308,5 @@ registrarPlantaMedicinal(1,"Rama","20 cm",100,null,"Alivia el dolor estomacal");
 registrarPlantaMedicinal(2,"Tomol","15 cm",150,null,"Alivia el dolor de cabeza");
 registrarPlantaOrnamental(1,"Ortencia","35 cm",230,null);
 registrarPlantaOrnamental(2,"Floripondio","23 cm",300,null);
+
+console.log(buscarPorNombre("Rosa"));
