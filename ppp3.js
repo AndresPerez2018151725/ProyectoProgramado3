@@ -297,3 +297,14 @@ function verPlantasImagen() {
 	}
 	return resultado;
 };
+
+//////////////////////////////// Creación de plantas y árboles ////////////////////////////////////////////////
+
+registrarArbolFrutal(1,"Limonero","1,20 cm",500,null,primavera);
+registrarArbolFrutal(2,"Manzano","2,10 cm",750,null,verano);
+registrarPlantaAromatica(1,"Clavel","10 cm",400,null,"Olor suave");
+registrarPlantaAromatica(2,"Rosa","5 cm",350,null,"Olor dulce");
+registrarPlantaMedicinal(1,"Rama","20 cm",100,null,"Alivia el dolor estomacal");
+registrarPlantaMedicinal(2,"Tomol","15 cm",150,null,"Alivia el dolor de cabeza");
+registrarPlantaOrnamental(1,"Ortencia","35 cm",230,null);
+registrarPlantaOrnamental(2,"Floripondio","23 cm",300,null);
