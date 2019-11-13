@@ -5,6 +5,13 @@ var listaMedicinales = new Array();
 var listaArboles = new Array();
 var propiedadesAromaticas = new Array();
 var temporadaArboles = new Array();
+var Imagen = document.getElementById("file");
+var code = document.getElementById('Codigo');
+var name = document.getElementById('Nombre');
+var altura = document.getElementById('Altura');
+var price = document.getElementById('Precio');
+var propiedade = document.getElementById('Propiedades');
+var tempo = document.getElementById('Temporada');
 //var imagenOrnamental = getElementById("Insertar nombre de la imagen aca");
 //INSERTAR LAS IMAGENES QUE FALTAN
 // NO SE SI USAMOS ARRAYS O CON LINKED LISTS, COMO QUIERAN 
@@ -15,30 +22,31 @@ function Planta(codigo, nombre, alturaMax, precioVenta, imagen) {
 	this.nombre = nombre;
 	this.alturaMax = alturaMax;
 	this.precioVenta = precioVenta;
-	this.imagen = imagen;
+	this.imagen = new Image(70, 70);
+	this.imagen.src = Imagen;
 }
 
 Planta.prototype = {
-	constructor:Planta,
-	getCodigo: function(){
+	constructor: Planta,
+	getCodigo: function () {
 		return this.codigo;
 	},
-	getNombre: function(){
+	getNombre: function () {
 		return this.nombre;
 	},
-	getAlturaMax: function(){
+	getAlturaMax: function () {
 		return this.alturaMax;
 	},
-	getPrecioVenta: function(){
+	getPrecioVenta: function () {
 		return this.precioVenta;
 	},
-	getImagen: function(){
+	getImagen: function () {
 		return this.imagen;
 	}
 };
 
 function PlantaOrnamental(codigo, nombre, alturaMax, precioVenta, imagen) {
-	Planta.call(this, codigo,nombre,alturaMax,precioVenta,imagen);
+	Planta.call(this, codigo, nombre, alturaMax, precioVenta, imagen);
 };
 
 PlantaOrnamental.prototype = Object.create(Planta.prototype, {
@@ -56,9 +64,13 @@ function registrarPlantaOrnamental(codigo, nombre, alturaMax, precioVenta, image
 	listaOrnamentales.push(plantaOrnamental);
 };
 
+function registrarPlantaOrnamentalHTML(code, name, altura, price, Imagen) {
+	var plantaOrnamental = new PlantaOrnamental(code, name, altura, price, Imagen);
+	listaOrnamentales.push(plantaOrnamental);
+};
 
 function PlantaAromatica(codigo, nombre, alturaMax, precioVenta, imagen, propiedadesAromaticas) {
-	Planta.call(this, codigo,nombre,alturaMax,precioVenta,imagen);
+	Planta.call(this, codigo, nombre, alturaMax, precioVenta, imagen);
 	this.propiedadesAromaticas = propiedadesAromaticas;
 };
 
@@ -80,7 +92,7 @@ function registrarPlantaAromatica(codigo, nombre, alturaMax, precioVenta, imagen
 
 
 function PlantaMedicinal(codigo, nombre, alturaMax, precioVenta, imagen, propiedadesMedicinales) {
-	Planta.call(this, codigo,nombre,alturaMax,precioVenta,imagen);
+	Planta.call(this, codigo, nombre, alturaMax, precioVenta, imagen);
 	this.propiedadesMedicinales = propiedadesMedicinales;
 };
 
@@ -101,7 +113,7 @@ function registrarPlantaMedicinal(codigo, nombre, alturaMax, precioVenta, imagen
 
 
 function ArbolFrutal(codigo, nombre, alturaMax, precioVenta, imagen, temporada) {
-	Planta.call(this, codigo,nombre,alturaMax,precioVenta,imagen);
+	Planta.call(this, codigo, nombre, alturaMax, precioVenta, imagen);
 	this.temporada = temporada;
 };
 
@@ -300,17 +312,22 @@ function verPlantasImagen() {
 	return resultado;
 };
 
+function validarComboBox() {
+	var comboBoxSelected = document.getElementById("filtros");
+	console.log(comboBoxSelected);
+};
+
 //////////////////////////////// Creación de plantas y árboles ////////////////////////////////////////////////
 
 
-registrarPlantaAromatica(1,"Clavel","10 cm",400,null,"Olor suave");
-registrarPlantaAromatica(2,"Rosa","5 cm",350,null,"Olor dulce");
-registrarPlantaMedicinal(1,"Rama","20 cm",100,null,"Alivia el dolor estomacal");
-registrarPlantaMedicinal(2,"Tomol","15 cm",150,null,"Alivia el dolor de cabeza");
-registrarPlantaOrnamental(1,"Ortencia","35 cm",230,null);
-registrarPlantaOrnamental(2,"Floripondio","23 cm",300,null);
-registrarArbolFrutal(1,"Limonero","1,20 cm",500,null,"primavera");
-registrarArbolFrutal(2,"Manzano","2,10 cm",750,null,"verano");
+registrarPlantaAromatica(1, "Clavel", "10 cm", 400, null, "Olor suave");
+registrarPlantaAromatica(2, "Rosa", "5 cm", 350, null, "Olor dulce");
+registrarPlantaMedicinal(1, "Rama", "20 cm", 100, null, "Alivia el dolor estomacal");
+registrarPlantaMedicinal(2, "Tomol", "15 cm", 150, null, "Alivia el dolor de cabeza");
+registrarPlantaOrnamental(1, "Ortencia", "35 cm", 230, null);
+registrarPlantaOrnamental(2, "Floripondio", "23 cm", 300, null);
+registrarArbolFrutal(1, "Limonero", "1,20 cm", 500, "yup.png", "primavera");
+registrarArbolFrutal(2, "Manzano", "2,10 cm", 750, null, "verano");
 /*
 console.log(listaMedicinales[1]);
 console.log(listaAromaticas[1]);
