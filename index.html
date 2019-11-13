@@ -16,7 +16,9 @@
   <head>
   <meta charset="utf-8">
   <title>TablaDolar</title>
+  <script src="ppp3.js"></script>
   </head>
+ 
   <body>
       <h1>Plantas y Arboles</h1>
 
@@ -33,7 +35,8 @@
   </table>
   
   <script>
-  
+
+  var contador = 0;
   var monto = 0;
   var dolar = 17.10; // Decimales
   var a = "";
@@ -42,9 +45,9 @@
   a += "<tr><td>Codigo</td><td>Nombre</td><td>Altura</td><td>Precio</td><td>Propiedades</td><td>Temporada</td></tr>"; // Cabecera
   
   while(vueltas < 10){
-      a += "<tr><td>" + dolar + "</td><td>" + monto + "</td></tr>" + "</td><td>" + monto + "</td><td>" + monto
-          + "</td><td>" + monto + "</td><td>" + monto;
-  
+      a += "<tr><td>" + 0 + "</td><td>" + verPlantasNombres()[contador] + "</td></tr>" + "</td><td>" + 0 + "</td><td>" + 0
+          + "</td><td>" + 0 + "</td><td>" + 0;
+      contador++      
       vueltas++;
       dolar++; // Incrementador
       monto++;
