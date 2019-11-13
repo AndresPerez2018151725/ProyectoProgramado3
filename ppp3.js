@@ -5,7 +5,7 @@ var listaMedicinales = new Array();
 var listaArboles = new Array();
 var propiedadesAromaticas = new Array();
 var temporadaArboles = new Array();
-var imagenOrnamental = getElementById("Insertar nombre de la imagen aca");
+//var imagenOrnamental = getElementById("Insertar nombre de la imagen aca");
 //INSERTAR LAS IMAGENES QUE FALTAN
 // NO SE SI USAMOS ARRAYS O CON LINKED LISTS, COMO QUIERAN 
 
@@ -18,14 +18,28 @@ function Planta(codigo, nombre, alturaMax, precioVenta, imagen) {
 	this.imagen = imagen;
 }
 
+Planta.prototype = {
+	constructor:Planta,
+	getCodigo: function(){
+		return this.codigo;
+	},
+	getNombre: function(){
+		return this.nombre;
+	},
+	getAlturaMax: function(){
+		return this.alturaMax;
+	},
+	getPrecioVenta: function(){
+		return this.precioVenta;
+	},
+	getImagen: function(){
+		return this.imagen;
+	}
+};
 
 function PlantaOrnamental(codigo, nombre, alturaMax, precioVenta, imagen) {
-	Planta.call(this, codigo);
-	Planta.call(this, nombre);
-	Planta.call(this, alturaMax);
-	Planta.call(this, precioVenta);
-	Planta.call(this, imagen);
-}
+	Planta.call(this, codigo,nombre,alturaMax,precioVenta,imagen);
+};
 
 PlantaOrnamental.prototype = Object.create(Planta.prototype, {
 	constructor: {
@@ -44,13 +58,9 @@ function registrarPlantaOrnamental(codigo, nombre, alturaMax, precioVenta, image
 
 
 function PlantaAromatica(codigo, nombre, alturaMax, precioVenta, imagen, propiedadesAromaticas) {
-	Planta.call(this, codigo);
-	Planta.call(this, nombre);
-	Planta.call(this, alturaMax);
-	Planta.call(this, precioVenta);
-	Planta.call(this, imagen);
+	Planta.call(this, codigo,nombre,alturaMax,precioVenta,imagen);
 	this.propiedadesAromaticas = propiedadesAromaticas;
-}
+};
 
 PlantaAromatica.prototype = Object.create(Planta.prototype, {
 	constructor: {
@@ -70,13 +80,9 @@ function registrarPlantaAromatica(codigo, nombre, alturaMax, precioVenta, imagen
 
 
 function PlantaMedicinal(codigo, nombre, alturaMax, precioVenta, imagen, propiedadesMedicinales) {
-	Planta.call(this, codigo);
-	Planta.call(this, nombre);
-	Planta.call(this, alturaMax);
-	Planta.call(this, precioVenta);
-	Planta.call(this, imagen);
+	Planta.call(this, codigo,nombre,alturaMax,precioVenta,imagen);
 	this.propiedadesMedicinales = propiedadesMedicinales;
-}
+};
 
 PlantaMedicinal.prototype = Object.create(Planta.prototype, {
 	constructor: {
@@ -89,19 +95,15 @@ PlantaMedicinal.prototype = Object.create(Planta.prototype, {
 
 ///FALTA AGARRAR LOS DATOS DEL HTML Y TAMBIÉN AGARRAR EN UN ARRAY LAS PROPIEDADES MEDICINALES
 function registrarPlantaMedicinal(codigo, nombre, alturaMax, precioVenta, imagen, propiedadesMedicinales) {
-	var PlantaMedicinal = new PlantaMedicinal(codigo, nombre, alturaMax, precioVenta, imagen, propiedadesMedicinales);
-	listaMedicinales.push(PlantaMedicinal);
+	var plantaMedicinal = new PlantaMedicinal(codigo, nombre, alturaMax, precioVenta, imagen, propiedadesMedicinales);
+	listaMedicinales.push(plantaMedicinal);
 };
 
 
 function ArbolFrutal(codigo, nombre, alturaMax, precioVenta, imagen, temporada) {
-	Planta.call(this, codigo);
-	Planta.call(this, nombre);
-	Planta.call(this, alturaMax);
-	Planta.call(this, precioVenta);
-	Planta.call(this, imagen);
+	Planta.call(this, codigo,nombre,alturaMax,precioVenta,imagen);
 	this.temporada = temporada;
-}
+};
 
 ArbolFrutal.prototype = Object.create(Planta.prototype, {
 	constructor: {
@@ -119,7 +121,7 @@ function registrarArbolFrutal(codigo, nombre, alturaMax, precioVenta, imagen, te
 };
 
 
-
+/*
 //LINKED LIST, SE PUEDE USAR O NO 
 function LinkedList() {
 	this.head = null;
@@ -155,7 +157,7 @@ LinkedList.prototype.search = function (buscar) {
 	}
 	return null;
 }
-
+*/
 function buscarPorNombre(nombre) {
 	var resultado = new Array();
 	for (i = 0; i < listaArboles.length; i++) {
@@ -297,3 +299,24 @@ function verPlantasImagen() {
 	}
 	return resultado;
 };
+
+//////////////////////////////// Creación de plantas y árboles ////////////////////////////////////////////////
+
+
+registrarPlantaAromatica(1,"Clavel","10 cm",400,null,"Olor suave");
+registrarPlantaAromatica(2,"Rosa","5 cm",350,null,"Olor dulce");
+registrarPlantaMedicinal(1,"Rama","20 cm",100,null,"Alivia el dolor estomacal");
+registrarPlantaMedicinal(2,"Tomol","15 cm",150,null,"Alivia el dolor de cabeza");
+registrarPlantaOrnamental(1,"Ortencia","35 cm",230,null);
+registrarPlantaOrnamental(2,"Floripondio","23 cm",300,null);
+registrarArbolFrutal(1,"Limonero","1,20 cm",500,null,"primavera");
+registrarArbolFrutal(2,"Manzano","2,10 cm",750,null,"verano");
+/*
+console.log(listaMedicinales[1]);
+console.log(listaAromaticas[1]);
+console.log(listaOrnamentales[1]);
+console.log(listaArboles[1]);
+console.log(buscarPorNombre("Limonero"));*/
+console.log(verPlantas());
+console.log(verPlantasImagen());
+console.log(verPlantasNombres());
