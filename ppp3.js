@@ -5,13 +5,13 @@ var listaMedicinales = new Array();
 var listaArboles = new Array();
 var propiedadesAromaticas = new Array();
 var temporadaArboles = new Array();
-var Imagen = document.getElementById("file");
-var code = document.getElementById('Codigo');
-var name = document.getElementById('Nombre');
-var altura = document.getElementById('Altura');
-var price = document.getElementById('Precio');
-var propiedade = document.getElementById('Propiedades');
-var tempo = document.getElementById('Temporada');
+var Imagen = document.getElementById("output");
+var code = document.getElementById('codigo');
+var names = document.getElementById('nombre');
+var altura = document.getElementById('altura');
+var price = document.getElementById('precio');
+var propiedade = document.getElementById('propiedades');
+var tempo = document.getElementById('temporada');
 //var imagenOrnamental = getElementById("Insertar nombre de la imagen aca");
 //INSERTAR LAS IMAGENES QUE FALTAN
 // NO SE SI USAMOS ARRAYS O CON LINKED LISTS, COMO QUIERAN 
@@ -41,7 +41,7 @@ Planta.prototype = {
 		return this.precioVenta;
 	},
 	getImagen: function () {
-		return this.imagen;
+		return Imagen;
 	}
 };
 
@@ -64,8 +64,8 @@ function registrarPlantaOrnamental(codigo, nombre, alturaMax, precioVenta, image
 	listaOrnamentales.push(plantaOrnamental);
 };
 
-function registrarPlantaOrnamentalHTML(code, name, altura, price, Imagen) {
-	var plantaOrnamental = new PlantaOrnamental(code, name, altura, price, Imagen);
+function registrarPlantaOrnamentalHTML() {
+	var plantaOrnamental = new PlantaOrnamental(code, names, altura, price, null);
 	listaOrnamentales.push(plantaOrnamental);
 };
 
@@ -317,6 +317,124 @@ function validarComboBox() {
 	console.log(comboBoxSelected);
 };
 
+function buscarPorNombreC(nombre) {
+	for (i = 0; i < listaArboles.length; i++) {
+		if (listaArboles[i].nombre == nombre) {
+            return listaArboles[i].codigo;
+		}
+	}
+	for (i = 0; i < listaAromaticas.length; i++) {
+		if (listaAromaticas[i].nombre == nombre) {
+            return listaAromaticas[i].codigo
+		}
+	}
+	for (i = 0; i < listaMedicinales.length; i++) {
+		if (listaMedicinales[i].nombre == nombre) {
+			return listaMedicinales[i].codigo
+		}
+	}
+	for (i = 0; i < listaOrnamentales.length; i++) {
+		if (listaOrnamentales[i].nombre == nombre) {
+			return listaOrnamentales[i].codigo
+        }
+	}
+};
+
+function buscarPorNombreN(nombre) {
+	for (i = 0; i < listaArboles.length; i++) {
+		if (listaArboles[i].nombre == nombre) {
+            return listaArboles[i].nombre;
+		}
+	}
+	for (i = 0; i < listaAromaticas.length; i++) {
+		if (listaAromaticas[i].nombre == nombre) {
+            return listaAromaticas[i].nombre;
+		}
+	}
+	for (i = 0; i < listaMedicinales.length; i++) {
+		if (listaMedicinales[i].nombre == nombre) {
+			return listaMedicinales[i].nombre;
+		}
+	}
+	for (i = 0; i < listaOrnamentales.length; i++) {
+		if (listaOrnamentales[i].nombre == nombre) {
+			return listaOrnamentales[i].nombre;
+        }
+	}
+};
+
+function buscarPorNombreA(nombre) {
+	for (i = 0; i < listaArboles.length; i++) {
+		if (listaArboles[i].nombre == nombre) {
+            return listaArboles[i].alturaMax;
+		}
+	}
+	for (i = 0; i < listaAromaticas.length; i++) {
+		if (listaAromaticas[i].nombre == nombre) {
+            return listaAromaticas[i].alturaMax;
+            
+		}
+	}
+	for (i = 0; i < listaMedicinales.length; i++) {
+		if (listaMedicinales[i].nombre == nombre) {
+			return listaMedicinales[i].alturaMax;        
+		}
+	}
+	for (i = 0; i < listaOrnamentales.length; i++) {
+		if (listaOrnamentales[i].nombre == nombre) {
+			return listaOrnamentales[i].alturaMax;
+        }
+	}
+};
+
+function buscarPorNombreP(nombre) {
+	
+	for (i = 0; i < listaArboles.length; i++) {
+		if (listaArboles[i].nombre == nombre) {
+            return listaArboles[i].precio;
+          
+		}
+	}
+	for (i = 0; i < listaAromaticas.length; i++) {
+		if (listaAromaticas[i].nombre == nombre) {
+            return listaAromaticas[i].precio;
+            
+		}
+	}
+	for (i = 0; i < listaMedicinales.length; i++) {
+		if (listaMedicinales[i].nombre == nombre) {
+			return listaMedicinales[i].precio;
+		}
+	}
+	for (i = 0; i < listaOrnamentales.length; i++) {
+		if (listaOrnamentales[i].nombre == nombre) {
+			return listaOrnamentales[i].precio;
+        };
+	}
+};
+
+function buscarPorNombrePro(nombre) {
+	for (i = 0; i < listaArboles.length; i++) {
+		if (listaArboles[i].nombre == nombre) {
+            return listaArboles[i].propiedades
+		}
+	}
+	for (i = 0; i < listaAromaticas.length; i++) {
+		if (listaAromaticas[i].nombre == nombre) {
+            return listaAromaticas[i].propiedades
+		}
+	}
+	for (i = 0; i < listaMedicinales.length; i++) {
+		if (listaMedicinales[i].nombre == nombre) {
+			return listaMedicinales[i].propiedades;
+		}
+	}
+	for (i = 0; i < listaOrnamentales.length; i++) {
+		if (listaOrnamentales[i].nombre == nombre) {
+			return listaOrnamentales[i].propiedades;
+        }
+	}
+};
 //////////////////////////////// Creación de plantas y árboles ////////////////////////////////////////////////
 
 
@@ -332,8 +450,10 @@ registrarArbolFrutal(2, "Manzano", "2,10 cm", 750, null, "verano");
 console.log(listaMedicinales[1]);
 console.log(listaAromaticas[1]);
 console.log(listaOrnamentales[1]);
-console.log(listaArboles[1]);
-console.log(buscarPorNombre("Limonero"));*/
+console.log(listaArboles[1]);*/
+console.log(buscarPorNombre("Limonero"));
 console.log(verPlantas());
 console.log(verPlantasImagen());
-console.log(verPlantasNombres()[1]);
+console.log(verPlantasNombres());
+
+

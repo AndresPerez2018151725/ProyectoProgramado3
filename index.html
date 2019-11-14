@@ -19,7 +19,6 @@
   <!-- Tab content -->
   <div id="Ver plantas" class="tabcontent">
     <h3>Ver plantas</h3>
-    <p>London is the capital city of England.</p>
 
     <table width="200" border="1">
       <tbody id="contenedor">
@@ -29,8 +28,6 @@
     <script>
 
       var contador = 0;
-      var monto = 0;
-      var dolar = 17.10; // Decimales
       var a = "";
       var vueltas = 0;
 
@@ -41,13 +38,26 @@
           + "</td><td>" + 0 + "</td><td>" + 0 + "</td></tr>";
         contador++
         vueltas++;
-        dolar++; // Incrementador
-        monto++;
+
       }
 
       document.getElementById("contenedor").innerHTML = a;
 
     </script>
+
+    <button type="button" onclick="refresh()">Refrescar</button>
+
+    <script>
+      function refresh() {
+        var lon = verPlantasNombres().lenght - 1;
+        var table = document.getElementById("contenedor");
+        var row = table.insertRow(-1);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        cell1.innerHTML = verPlantasNombres()[8];
+      }
+    </script>
+
   </div>
 
   <div id="Registro de plantas" class="tabcontent">
@@ -76,10 +86,10 @@
     <input type="text" name="Propiedades" id="propiedades" size="20"><br /><br />
 
     <label>Introduzca la temporada: (En caso de pertenecer a una)</label>
-    <input type="text" name="Temporada" id="temporada" size="20"><br /><br />
+    <input type="text" name="Temporada" id="temporada" size="20"><br />
 
     <p><input type="file" accept="image/*" name="image" id="file" onchange="loadFile(event)" style="display: none;"></p>
-    <p><label for="file" style="cursor: pointer;">Upload Image</label></p>
+    <p><label for="file" style="cursor: pointer;">Presione para elegir la imagen</label></p>
     <p><img id="output" width="200" /></p>
 
     <script>
@@ -87,24 +97,142 @@
         var image = document.getElementById('output');
         image.src = URL.createObjectURL(event.target.files[0]);
       };
+
+      function codu() {
+        var codes = document.getElementById('codigo').nodeValue;
+        return codes;
+      }
+      function nammme() {
+        var names = document.getElementById('nombre').nodeValue;
+        return names;
+      }
+      function alt() {
+        var altur = document.getElementById('altura').nodeValue;
+        return altur;
+      }
+      function prec() {
+        var preci = document.getElementById('precio').nodeValue;
+        return preci;
+      }
+      function prophunt() {
+        var propi = document.getElementById('propiedades').nodeValue;
+        return propi;
+      }
+      function valu() {
+        var codes = document.getElementById('codigo').nodeValue;
+        var names = document.getElementById('nombre').nodeValue;
+        var altur = document.getElementById('altura').nodeValue;
+        var preci = document.getElementById('precio').nodeValue;
+        var propi = document.getElementById('propiedades').nodeValue;
+        var tempor = document.getElementById('temporada').nodeValue;
+        var image = document.getElementById('output').nodeValue;
+      }
+      function elegirCombo() {
+        var choice = "";
+        var sel = document.getElementById('filtros').nodeValue;
+        switch (sel) {
+          case 'PlantaAroma':
+            choice = registrarPlantaAromatica();
+            break;
+          case 'PlantaOrna':
+            choice = registrarPlantaOrnamental();
+            break;
+          case 'PlantaMedicinal':
+            choice = registrarPlantaMedicinal();
+            break;
+          case 'Arbol':
+            choice = registrarArbolFrutal();
+            break;
+          default:
+            break;
+        }
+
+      }
+/*
+      function mostrar() { 
+        if (codu()=='Planta Ornamental'){
+
+        }
+
+      }*/
     </script>
+    <button onclick="registrarPlantaOrnamental(3, 'Floristo', '23 cm', 350, null)">Registrar</button>
+
+    <button onclick="registrarPlantaOrnamental(codu(),nammme(),alt(), prec(), null)">Registrar</button>
+
   </div>
 
   <div id="Busqueda de plantas" class="tabcontent">
     <h3>Busqueda de plantas</h3>
-    <p>Tokyo is the capital of Japan.</p>
+    
 
-    <select id="filtros" onchange="flitros();">
+    <select id="filtrosType" name = "filtrosType">
       <option value="Nombre">Nombre</option>
       <option value="Temporada">Temporada</option>
       <option value="Precio">Precio</option>
       <option value="Propiedades">Propiedades</option>
     </select>
 
+    <table width="200" border="1">
+        <tbody id="buscaFiltros">
+        </tbody>
+      </table>
+
+    <script>
+        function leerFiltroTextBox() {
+            var filtroB = document.getElementById("filtroBusqueda").value;
+            alert(filtroB);
+            return filtroB;
+        }
+
+        function leerComboBoxFiltro() {
+            var filtroTipo = document.getElementById("filtrosType").value;
+            alert(filtroTipo);
+        }
+
+      var resultadoBusquedaC;
+      var resultadoBusquedaN;
+      var resultadoBusquedaA;
+      var resultadoBusquedaP;
+      var resultadoBusquedaPro;
+      var parametro = leerFiltroTextBox();
+      function mostrarBusqueda() {
+     // if (leerComboBoxFiltro() == "Nombre"){
+          resultadoBusquedaC = buscarPorNombreC(parametro);
+          resultadoBusquedaN = buscarPorNombreN(parametro);
+          resultadoBusquedaA = buscarPorNombreA(parametro);
+          resultadoBusquedaP = buscarPorNombreP(parametro);
+          resultadoBusquedaPro = buscarPorNombrePro(parametro);
+     //   }
+      
+     // if (leerComboBoxFiltro() == "Precio"){
+       //   resultadoBusquedaC = buscarPorPrecioC(parametro);
+         // resultadoBusquedaN = buscarPorPrecioN(parametro);
+        //  resultadoBusquedaA = buscarPorPrecioA(parametro);
+        //  resultadoBusquedaP = buscarPorPrecioP(parametro);
+         // resultadoBusquedaPro = buscarPorPrecioPro(parametro);
+      //}
+      var b = "";
+      var contador = 0;
+      b += "<tr><td>Codigo</td><td>Nombre</td><td>Altura</td><td>Precio</td><td>Propiedades/Temporada</td></tr>"; // Cabecera
+      
+      while (contador < 10) {
+        b += "<tr><td>" + resultadoBusquedaC + "</td><td>" + resultadoBusquedaN + 
+          "</td><td>" + resultadoBusquedaA + "</td><td>" + resultadoBusquedaP
+           + "</td><td>" + resultadoBusquedaPro + "</td></tr>";
+        contador++;
+      }
+      
+      document.getElementById("buscaFiltros").innerHTML = b;
+    }
+    </script>
+
+    <label>Introduzca el filtro:</label>
+    <input type="text" name="filtroBusqueda" id="filtroBusqueda" size="20"><br /><br />
+    
+    <button onclick="mostrarBusqueda()" id = "botonFiltro">Buscar Por Filtro</button>
+
   </div>
-
-</body>
-
 </body>
 
 </html>
