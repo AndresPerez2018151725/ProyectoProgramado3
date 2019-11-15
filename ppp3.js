@@ -133,67 +133,41 @@ function registrarArbolFrutal(codigo, nombre, alturaMax, precioVenta, imagen, te
 };
 
 
-/*
-//LINKED LIST, SE PUEDE USAR O NO 
-function LinkedList() {
-	this.head = null;
-	this.tail = null;
-}
-function NodeLinked(value, next, prev) {
-	this.value = value;
-	this.next = next;
-	this.prev = prev;
-}
-
-
-LinkedList.prototype.InsertHead = function (value) {
-	const newNodo = new NodeLinked(value, this.head, null);
-	if (this.head) this.head.prev = newNodo;
-	else this.tail = newNodo;
-	this.head = newNodo;
-};
-
-
-LinkedList.prototype.InsertTail = function (vaule) {
-	const newNodo = new NodeLinked(value, null, this.tail);
-	if (this.tail) this.tail.next = newNodo;
-	else this.head = newNodo;
-	this.tail = newNodo;
-}
-
-LinkedList.prototype.search = function (buscar) {
-	let current = this.head;
-	while (current) {
-		if (current.value === buscar) return current;
-		current = current.next;
-	}
-	return null;
-}
-*/
 function buscarPorNombre(nombre) {
 	var resultado = new Array();
 	for (i = 0; i < listaArboles.length; i++) {
 		if (listaArboles[i].nombre == nombre) {
-			resultado.push(listaArboles[i]);
-			break;
+			resultado.push(listaArboles[i].getCodigo());
+			resultado.push(listaArboles[i].getNombre());
+			resultado.push(listaArboles[i].getAlturaMax());
+			resultado.push(listaArboles[i].getPrecioVenta());
+			resultado.push(listaArboles[i].temporada);
 		}
 	}
 	for (i = 0; i < listaAromaticas.length; i++) {
 		if (listaAromaticas[i].nombre == nombre) {
-			resultado.push(listaAromaticas[i]);
-			break;
+			resultado.push(listaAromaticas[i].getCodigo());
+			resultado.push(listaAromaticas[i].getNombre());
+			resultado.push(listaAromaticas[i].getAlturaMax());
+			resultado.push(listaAromaticas[i].getPrecioVenta());
+			resultado.push(listaAromaticas[i].propiedadesAromaticas);
 		}
 	}
 	for (i = 0; i < listaMedicinales.length; i++) {
 		if (listaMedicinales[i].nombre == nombre) {
-			resultado.push(listaMedicinales[i]);
-			break;
+			resultado.push(listaMedicinales[i].getCodigo());
+			resultado.push(listaMedicinales[i].getNombre());
+			resultado.push(listaMedicinales[i].getAlturaMax());
+			resultado.push(listaMedicinales[i].getPrecioVenta());
+			resultado.push(listaMedicinales[i].propiedadesMedicinales);
 		}
 	}
 	for (i = 0; i < listaOrnamentales.length; i++) {
 		if (listaOrnamentales[i].nombre == nombre) {
-			resultado.push(listaOrnamentales[i]);
-			break;
+			resultado.push(listaOrnamentales[i].getCodigo());
+			resultado.push(listaOrnamentales[i].getNombre());
+			resultado.push(listaOrnamentales[i].getAlturaMax());
+			resultado.push(listaOrnamentales[i].getPrecioVenta());
 		}
 	}
 	return resultado;
@@ -203,8 +177,11 @@ function buscarPorTemporada(temporada) {
 	var resultado = new Array();
 	for (i = 0; i < listaArboles.length; i++) {
 		if (listaArboles[i].temporada == temporada) {
-			resultado.push(listaArboles[i]);
-			break;
+			resultado.push(listaArboles[i].getCodigo());
+			resultado.push(listaArboles[i].getNombre());
+			resultado.push(listaArboles[i].getAlturaMax());
+			resultado.push(listaArboles[i].getPrecioVenta());
+			resultado.push(listaArboles[i].temporada);
 		}
 	}
 	return resultado;
@@ -214,26 +191,37 @@ function buscarPorPrecio(precio) {
 	var resultado = new Array();
 	for (i = 0; i < listaArboles.length; i++) {
 		if (listaArboles[i].precioVenta == precio) {
-			resultado.push(listaArboles[i]);
-			break;
+			resultado.push(listaArboles[i].getCodigo());
+			resultado.push(listaArboles[i].getNombre());
+			resultado.push(listaArboles[i].getAlturaMax());
+			resultado.push(listaArboles[i].getPrecioVenta());
+			resultado.push(listaArboles[i].temporada);
 		}
 	}
 	for (i = 0; i < listaAromaticas.length; i++) {
 		if (listaAromaticas[i].precioVenta == precio) {
-			resultado.push(listaAromaticas[i]);
-			break;
+			resultado.push(listaAromaticas[i].getCodigo());
+			resultado.push(listaAromaticas[i].getNombre());
+			resultado.push(listaAromaticas[i].getAlturaMax());
+			resultado.push(listaAromaticas[i].getPrecioVenta());
+			resultado.push(listaAromaticas[i].propiedadesAromaticas);
 		}
 	}
 	for (i = 0; i < listaMedicinales.length; i++) {
 		if (listaMedicinales[i].precioVenta == precio) {
-			resultado.push(listaMedicinales[i]);
-			break;
+			resultado.push(listaMedicinales[i].getCodigo());
+			resultado.push(listaMedicinales[i].getNombre());
+			resultado.push(listaMedicinales[i].getAlturaMax());
+			resultado.push(listaMedicinales[i].getPrecioVenta());
+			resultado.push(listaMedicinales[i].propiedadesMedicinales);
 		}
 	}
 	for (i = 0; i < listaOrnamentales.length; i++) {
 		if (listaOrnamentales[i].precioVenta == precio) {
-			resultado.push(listaOrnamentales[i]);
-			break;
+			resultado.push(listaOrnamentales[i].getCodigo());
+			resultado.push(listaOrnamentales[i].getNombre());
+			resultado.push(listaOrnamentales[i].getAlturaMax());
+			resultado.push(listaOrnamentales[i].getPrecioVenta());
 		}
 	}
 	return resultado;
@@ -243,14 +231,20 @@ function buscarPorPropiedades(propiedades) {
 	var resultado = new Array();
 	for (i = 0; i < listaAromaticas.length; i++) {
 		if (listaAromaticas[i].propiedadesAromaticas == propiedades) {
-			resultado.push(listaAromaticas[i]);
-			break;
+			resultado.push(listaAromaticas[i].getCodigo());
+			resultado.push(listaAromaticas[i].getNombre());
+			resultado.push(listaAromaticas[i].getAlturaMax());
+			resultado.push(listaAromaticas[i].getPrecioVenta());
+			resultado.push(listaAromaticas[i].propiedadesAromaticas);
 		}
 	}
 	for (i = 0; i < listaMedicinales.length; i++) {
 		if (listaMedicinales[i].propiedadesMedicinales == propiedades) {
-			resultado.push(listaMedicinales[i]);
-			break;
+			resultado.push(listaMedicinales[i].getCodigo());
+			resultado.push(listaMedicinales[i].getNombre());
+			resultado.push(listaMedicinales[i].getAlturaMax());
+			resultado.push(listaMedicinales[i].getPrecioVenta());
+			resultado.push(listaMedicinales[i].propiedadesMedicinales);
 		}
 	}
 	return resultado;
@@ -317,143 +311,32 @@ function validarComboBox() {
 	console.log(comboBoxSelected);
 };
 
-function buscarPorNombreC(nombre) {
-	for (i = 0; i < listaArboles.length; i++) {
-		if (listaArboles[i].nombre == nombre) {
-            return listaArboles[i].codigo;
-		}
-	}
-	for (i = 0; i < listaAromaticas.length; i++) {
-		if (listaAromaticas[i].nombre == nombre) {
-            return listaAromaticas[i].codigo
-		}
-	}
-	for (i = 0; i < listaMedicinales.length; i++) {
-		if (listaMedicinales[i].nombre == nombre) {
-			return listaMedicinales[i].codigo
-		}
-	}
-	for (i = 0; i < listaOrnamentales.length; i++) {
-		if (listaOrnamentales[i].nombre == nombre) {
-			return listaOrnamentales[i].codigo
-        }
-	}
-};
 
-function buscarPorNombreN(nombre) {
-	for (i = 0; i < listaArboles.length; i++) {
-		if (listaArboles[i].nombre == nombre) {
-            return listaArboles[i].nombre;
-		}
-	}
-	for (i = 0; i < listaAromaticas.length; i++) {
-		if (listaAromaticas[i].nombre == nombre) {
-            return listaAromaticas[i].nombre;
-		}
-	}
-	for (i = 0; i < listaMedicinales.length; i++) {
-		if (listaMedicinales[i].nombre == nombre) {
-			return listaMedicinales[i].nombre;
-		}
-	}
-	for (i = 0; i < listaOrnamentales.length; i++) {
-		if (listaOrnamentales[i].nombre == nombre) {
-			return listaOrnamentales[i].nombre;
-        }
-	}
-};
-
-function buscarPorNombreA(nombre) {
-	for (i = 0; i < listaArboles.length; i++) {
-		if (listaArboles[i].nombre == nombre) {
-            return listaArboles[i].alturaMax;
-		}
-	}
-	for (i = 0; i < listaAromaticas.length; i++) {
-		if (listaAromaticas[i].nombre == nombre) {
-            return listaAromaticas[i].alturaMax;
-            
-		}
-	}
-	for (i = 0; i < listaMedicinales.length; i++) {
-		if (listaMedicinales[i].nombre == nombre) {
-			return listaMedicinales[i].alturaMax;        
-		}
-	}
-	for (i = 0; i < listaOrnamentales.length; i++) {
-		if (listaOrnamentales[i].nombre == nombre) {
-			return listaOrnamentales[i].alturaMax;
-        }
-	}
-};
-
-function buscarPorNombreP(nombre) {
-	
-	for (i = 0; i < listaArboles.length; i++) {
-		if (listaArboles[i].nombre == nombre) {
-            return listaArboles[i].precio;
-          
-		}
-	}
-	for (i = 0; i < listaAromaticas.length; i++) {
-		if (listaAromaticas[i].nombre == nombre) {
-            return listaAromaticas[i].precio;
-            
-		}
-	}
-	for (i = 0; i < listaMedicinales.length; i++) {
-		if (listaMedicinales[i].nombre == nombre) {
-			return listaMedicinales[i].precio;
-		}
-	}
-	for (i = 0; i < listaOrnamentales.length; i++) {
-		if (listaOrnamentales[i].nombre == nombre) {
-			return listaOrnamentales[i].precio;
-        };
-	}
-};
-
-function buscarPorNombrePro(nombre) {
-	for (i = 0; i < listaArboles.length; i++) {
-		if (listaArboles[i].nombre == nombre) {
-            return listaArboles[i].propiedades
-		}
-	}
-	for (i = 0; i < listaAromaticas.length; i++) {
-		if (listaAromaticas[i].nombre == nombre) {
-            return listaAromaticas[i].propiedades
-		}
-	}
-	for (i = 0; i < listaMedicinales.length; i++) {
-		if (listaMedicinales[i].nombre == nombre) {
-			return listaMedicinales[i].propiedades;
-		}
-	}
-	for (i = 0; i < listaOrnamentales.length; i++) {
-		if (listaOrnamentales[i].nombre == nombre) {
-			return listaOrnamentales[i].propiedades;
-        }
-	}
-};
 //////////////////////////////// Creación de plantas y árboles ////////////////////////////////////////////////
 
 
 registrarPlantaAromatica(1, "Clavel", "10 cm", 400, null, "Olor suave");
 registrarPlantaAromatica(2, "Rosa", "5 cm", 350, null, "Olor dulce");
 registrarPlantaMedicinal(1, "Rama", "20 cm", 100, null, "Alivia el dolor estomacal");
-registrarPlantaMedicinal(2, "Tomol", "15 cm", 150, null, "Alivia el dolor de cabeza");
-registrarPlantaOrnamental(1, "Ortencia", "35 cm", 230, null);
+registrarPlantaMedicinal(2, "Tomol", "15 cm", 100, null, "Alivia el dolor de cabeza");
+registrarPlantaOrnamental(1, "Ortencia", "35 cm", 170, null);
 registrarPlantaOrnamental(2, "Floripondio", "23 cm", 300, null);
 registrarArbolFrutal(1, "Limonero", "1,20 cm", 500, "yup.png", "primavera");
 registrarArbolFrutal(2, "Manzano", "2,10 cm", 750, null, "verano");
-/*
-console.log(listaMedicinales[1]);
-console.log(listaAromaticas[1]);
-console.log(listaOrnamentales[1]);
-console.log(listaArboles[1]);*/
-console.log(buscarPorNombre("Limonero"));
+
+console.log(buscarPorPrecio(100).length); 
 console.log(verPlantas());
 console.log(verPlantasImagen());
 console.log(verPlantasNombres());
-
-
+var parametro = "Manzano";
+var contadora=0;
+var choice = new Array();
+choice.push(buscarPorNombre(parametro)[contadora]);
+choice.push(buscarPorNombre(parametro)[1]);
+choice.push(buscarPorNombre(parametro)[2]);
+choice.push(buscarPorNombre(parametro)[3]);
+choice.push(buscarPorNombre(parametro)[4]);
+choice.push(buscarPorNombre(parametro)[5]);
+choice.push(buscarPorNombre(parametro)[6]);
+//choice.push(buscarPorNombre(parametro)[contadora]);
+console.log(choice[6]);

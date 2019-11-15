@@ -3,18 +3,14 @@
 
 <head>
   <meta charset="utf-8">
-  <title>TablaDolar</title>
+  <title>Plantas y Árboles</title>
   <script src="ppp3.js"></script>
 </head>
 
 <body>
   <h1>Plantas y Arboles</h1>
 
-  <div class="tab">
-    <button class="tablinks" onclick="openCity(event, 'Ver plantas')">Ver plantas</button>
-    <button class="tablinks" onclick="openCity(event, 'Registro de plantas')">Registro de plantas</button>
-    <button class="tablinks" onclick="openCity(event, 'Busqueda de plantas')">Busqueda de plantas</button>
-  </div>
+  
 
   <!-- Tab content -->
   <div id="Ver plantas" class="tabcontent">
@@ -26,26 +22,25 @@
     </table>
 
     <script>
+      function tabla() {
+        var contador = 0;
+        var a = "";
+        var vueltas = 0;
 
-      var contador = 0;
-      var a = "";
-      var vueltas = 0;
+        a += "<tr><td>Nombre</td><td>Imagen</td></tr>"; // Cabecera
 
-      a += "<tr><td>Codigo</td><td>Nombre</td><td>Altura</td><td>Precio</td><td>Propiedades</td><td>Temporada</td></tr>"; // Cabecera
+        while (vueltas < 18) {
+          a += "<tr><td>" + verPlantasNombres()[contador] + "</td><td>" + verPlantasImagen()[contador] + "</td></tr>";
+          contador++;
+          vueltas++;
 
-      while (vueltas < 10) {
-        a += "<tr><td>" + 0 + "</td><td>" + verPlantasNombres()[contador] + "</td><td>" + 1 + "</td><td>" + 1
-          + "</td><td>" + 0 + "</td><td>" + 0 + "</td></tr>";
-        contador++
-        vueltas++;
+        }
 
+        document.getElementById("contenedor").innerHTML = a;
       }
-
-      document.getElementById("contenedor").innerHTML = a;
-
     </script>
 
-    <button type="button" onclick="refresh()">Refrescar</button>
+    <button type="button" onclick="tabla()">Refrescar</button>
 
     <script>
       function refresh() {
@@ -63,7 +58,7 @@
   <div id="Registro de plantas" class="tabcontent">
     <h3>Registro de plantas</h3>
 
-    <select id="filtros" onchange="flitros();">
+    <select id="filtros" name="filtros">
       <option value="PlantaAroma">Planta aromática</option>
       <option value="PlantaOrna">Planta ornamental</option>
       <option value="PlantaMedicinal">Planta medicinal</option>
@@ -93,80 +88,79 @@
     <p><img id="output" width="200" /></p>
 
     <script>
+
       var loadFile = function (event) {
         var image = document.getElementById('output');
         image.src = URL.createObjectURL(event.target.files[0]);
       };
 
       function codu() {
-        var codes = document.getElementById('codigo').nodeValue;
+        var codes = document.getElementById('codigo').value;
         return codes;
       }
       function nammme() {
-        var names = document.getElementById('nombre').nodeValue;
+        var names = document.getElementById('nombre').value;
         return names;
       }
       function alt() {
-        var altur = document.getElementById('altura').nodeValue;
+        var altur = document.getElementById('altura').value;
         return altur;
       }
       function prec() {
-        var preci = document.getElementById('precio').nodeValue;
+        var preci = document.getElementById('precio').value;
         return preci;
       }
       function prophunt() {
-        var propi = document.getElementById('propiedades').nodeValue;
+        var propi = document.getElementById('propiedades').value;
         return propi;
       }
-      function valu() {
-        var codes = document.getElementById('codigo').nodeValue;
-        var names = document.getElementById('nombre').nodeValue;
-        var altur = document.getElementById('altura').nodeValue;
-        var preci = document.getElementById('precio').nodeValue;
-        var propi = document.getElementById('propiedades').nodeValue;
-        var tempor = document.getElementById('temporada').nodeValue;
-        var image = document.getElementById('output').nodeValue;
+      function tem() {
+        var tempp = document.getElementById('temporada').value;
+        return tempp;
       }
+      function imma() {
+        var immo = document.getElementById('output');
+        return immo;
+      }
+
       function elegirCombo() {
         var choice = "";
-        var sel = document.getElementById('filtros').nodeValue;
+        var sel = document.getElementById('filtros').value;
         switch (sel) {
           case 'PlantaAroma':
-            choice = registrarPlantaAromatica();
+            choice = registrarPlantaAromatica(codu(), nammme(), alt(), prec(), null, prophunt());
+            return choice;
             break;
           case 'PlantaOrna':
-            choice = registrarPlantaOrnamental();
+            choice = registrarPlantaOrnamental(codu(), nammme(), alt(), prec(), imma());
+            verPlantasImagen();
+            return choice;
             break;
           case 'PlantaMedicinal':
-            choice = registrarPlantaMedicinal();
+            choice = registrarPlantaMedicinal(codu(), nammme(), alt(), prec(), null, prophunt());
+            return choice;
             break;
           case 'Arbol':
-            choice = registrarArbolFrutal();
+            choice = registrarArbolFrutal(codu(), nammme(), alt(), prec(), null, tem());
+            return choice;
             break;
           default:
+            console.log("Insertado");
             break;
         }
 
       }
-/*
-      function mostrar() { 
-        if (codu()=='Planta Ornamental'){
-
-        }
-
-      }*/
     </script>
-    <button onclick="registrarPlantaOrnamental(3, 'Floristo', '23 cm', 350, null)">Registrar</button>
 
-    <button onclick="registrarPlantaOrnamental(codu(),nammme(),alt(), prec(), null)">Registrar</button>
+    <button onclick="elegirCombo()">Registrar</button>
 
   </div>
 
   <div id="Busqueda de plantas" class="tabcontent">
     <h3>Busqueda de plantas</h3>
-    
 
-    <select id="filtrosType" name = "filtrosType">
+
+    <select id="filtrosType" name="filtrosType">
       <option value="Nombre">Nombre</option>
       <option value="Temporada">Temporada</option>
       <option value="Precio">Precio</option>
@@ -174,63 +168,143 @@
     </select>
 
     <table width="200" border="1">
-        <tbody id="buscaFiltros">
-        </tbody>
-      </table>
-
-    <script>
-        function leerFiltroTextBox() {
-            var filtroB = document.getElementById("filtroBusqueda").value;
-            alert(filtroB);
-            return filtroB;
-        }
-
-        function leerComboBoxFiltro() {
-            var filtroTipo = document.getElementById("filtrosType").value;
-            alert(filtroTipo);
-        }
-
-      var resultadoBusquedaC;
-      var resultadoBusquedaN;
-      var resultadoBusquedaA;
-      var resultadoBusquedaP;
-      var resultadoBusquedaPro;
-      var parametro = leerFiltroTextBox();
-      function mostrarBusqueda() {
-     // if (leerComboBoxFiltro() == "Nombre"){
-          resultadoBusquedaC = buscarPorNombreC(parametro);
-          resultadoBusquedaN = buscarPorNombreN(parametro);
-          resultadoBusquedaA = buscarPorNombreA(parametro);
-          resultadoBusquedaP = buscarPorNombreP(parametro);
-          resultadoBusquedaPro = buscarPorNombrePro(parametro);
-     //   }
-      
-     // if (leerComboBoxFiltro() == "Precio"){
-       //   resultadoBusquedaC = buscarPorPrecioC(parametro);
-         // resultadoBusquedaN = buscarPorPrecioN(parametro);
-        //  resultadoBusquedaA = buscarPorPrecioA(parametro);
-        //  resultadoBusquedaP = buscarPorPrecioP(parametro);
-         // resultadoBusquedaPro = buscarPorPrecioPro(parametro);
-      //}
-      var b = "";
-      var contador = 0;
-      b += "<tr><td>Codigo</td><td>Nombre</td><td>Altura</td><td>Precio</td><td>Propiedades/Temporada</td></tr>"; // Cabecera
-      
-      while (contador < 10) {
-        b += "<tr><td>" + resultadoBusquedaC + "</td><td>" + resultadoBusquedaN + 
-          "</td><td>" + resultadoBusquedaA + "</td><td>" + resultadoBusquedaP
-           + "</td><td>" + resultadoBusquedaPro + "</td></tr>";
-        contador++;
-      }
-      
-      document.getElementById("buscaFiltros").innerHTML = b;
-    }
-    </script>
+      <tbody id="buscaFiltros">
+      </tbody>
+    </table>
 
     <label>Introduzca el filtro:</label>
     <input type="text" name="filtroBusqueda" id="filtroBusqueda" size="20"><br /><br />
-    
-    <button onclick="mostrarBusqueda()" id = "botonFiltro">Buscar Por Filtro</button>
+
+    <script>
+      function leerFiltroTextBox() {
+        var filtroB = document.getElementById("filtroBusqueda").value;
+        return filtroB;
+      }
+
+      function leerComboBoxFiltro() {
+        var filtroTipo = document.getElementById("filtrosType").value;
+        return filtroTipo;
+      }
+
+      function search() {
+        var filtros = document.getElementById("filtroBusqueda").value;
+        return filtros;
+      }
+
+
+      function elegirComboBusqueda() {
+        var parametro = search();
+
+        var choice = new Array();
+        var contadora = 0;
+        var sel = document.getElementById('filtrosType').value;
+        switch (sel) {
+          case 'Nombre':
+            choice.push(buscarPorNombre(parametro)[0]);
+            choice.push(buscarPorNombre(parametro)[1]);
+            choice.push(buscarPorNombre(parametro)[2]);
+            choice.push(buscarPorNombre(parametro)[3]);
+            choice.push(buscarPorNombre(parametro)[4]);
+            choice.push(buscarPorNombre(parametro)[5]);
+            if (buscarPorNombre(parametro)[6] != null) {
+              //choice.push(buscarPorNombre(parametro)[5]);
+              choice.push(buscarPorNombre(parametro)[6]);
+              choice.push(buscarPorNombre(parametro)[7]);
+              choice.push(buscarPorNombre(parametro)[8]);
+              choice.push(buscarPorNombre(parametro)[9]);
+            }
+            return choice;
+            break;
+          case 'Temporada':
+            choice.push(buscarPorTemporada(parametro)[0]);
+            choice.push(buscarPorTemporada(parametro)[1]);
+            choice.push(buscarPorTemporada(parametro)[2]);
+            choice.push(buscarPorTemporada(parametro)[3]);
+            choice.push(buscarPorTemporada(parametro)[4]);
+            if (buscarPorTemporada(parametro)[6] != null) {
+              choice.push(buscarPorTemporada(parametro)[5]);
+              choice.push(buscarPorTemporada(parametro)[6]);
+              choice.push(buscarPorTemporada(parametro)[7]);
+              choice.push(buscarPorTemporada(parametro)[8]);
+              choice.push(buscarPorTemporada(parametro)[9]);
+            }
+            return choice;
+            break;
+          case 'Precio':
+            choice.push(buscarPorPrecio(parametro)[0]);
+            choice.push(buscarPorPrecio(parametro)[1]);
+            choice.push(buscarPorPrecio(parametro)[2]);
+            choice.push(buscarPorPrecio(parametro)[3]);
+            choice.push(buscarPorPrecio(parametro)[4]);
+            if (buscarPorPrecio(parametro)[6] != null) {
+              choice.push(buscarPorPrecio(parametro)[5]);
+              choice.push(buscarPorPrecio(parametro)[6]);
+              choice.push(buscarPorPrecio(parametro)[7]);
+              choice.push(buscarPorPrecio(parametro)[8]);
+              choice.push(buscarPorPrecio(parametro)[9]);
+            }
+            return choice;
+            break;
+          case 'Propiedades':
+            choice.push(buscarPorPropiedades(parametro)[0]);
+            choice.push(buscarPorPropiedades(parametro)[1]);
+            choice.push(buscarPorPropiedades(parametro)[2]);
+            choice.push(buscarPorPropiedades(parametro)[3]);
+            choice.push(buscarPorPropiedades(parametro)[4]);
+            if (buscarPorPropiedades(parametro)[6] != null) {
+              choice.push(buscarPorPropiedades(parametro)[5]);
+              choice.push(buscarPorPropiedades(parametro)[6]);
+              choice.push(buscarPorPropiedades(parametro)[7]);
+              choice.push(buscarPorPropiedades(parametro)[8]);
+              choice.push(buscarPorPropiedades(parametro)[9]);
+            }
+            return choice;
+            break;
+          default:
+            console.log("Insertado");
+            break;
+        }
+
+      }
+
+      function refreshBusqueda() {
+        //var lon = verPlantasNombres().lenght - 1;
+        var table = document.getElementById("buscaFiltros");
+        var row = table.insertRow(-1);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+        var cell4 = row.insertCell(3);
+        var cell5 = row.insertCell(4);
+        cell1.innerHTML = elegirComboBusqueda()[5];
+        cell2.innerHTML = elegirComboBusqueda()[6];
+        cell3.innerHTML = elegirComboBusqueda()[7];
+        cell4.innerHTML = elegirComboBusqueda()[8];
+        cell5.innerHTML = elegirComboBusqueda()[9];
+      }
+
+      function mostrarBusqueda() {
+
+        var b = "";
+        var contador = 0;
+        var fil = 1;
+        b += "<tr><td>Codigo</td><td>Nombre</td><td>Altura</td><td>Precio</td><td>Propiedades/Temporada</td></tr>"; // Cabecera
+
+        while (contador < fil) {
+
+          b += "<tr><td>" + elegirComboBusqueda()[0] + "</td><td>" + elegirComboBusqueda()[1] +
+            "</td><td>" + elegirComboBusqueda()[2] + "</td><td>" + elegirComboBusqueda()[3]
+            + "</td><td>" + elegirComboBusqueda()[4] + "</td></tr>";
+          contador++;
+        }
+
+
+        document.getElementById("buscaFiltros").innerHTML = b;
+      }
+    </script>
+
+    <button onclick="mostrarBusqueda()" id="botonFiltro">Buscar Por Filtro</button>
+    <button onclick="refreshBusqueda()" id="botonFiltro">Refrescar</button>
 
   </div>
 </body>
